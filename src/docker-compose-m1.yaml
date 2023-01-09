@@ -1,0 +1,51 @@
+version: "3.0"
+services:
+    web:
+        build: ./.docker/php8
+        container_name: trabalhobd
+        tty: true
+        stdin_open: true
+        entrypoint: supervisord
+        hostname: falacode
+        domainname: local.com
+        working_dir: /var/www/html
+        ports:
+          - 8000:8000
+          - 443:443
+        env_file:
+            - .env
+        extra_hosts:
+            mysql.falacode.local.com: 174.20.1.45
+        volumes:
+            - ./:/var/www/html
+            - ./.docker/php8/sites-enabled:/etc/nginx/sites-enabled
+            - ./.docker/php8/supervisor.conf:/etc/supervisor/conf.d/supervisor.conf
+            - "/etc/timezone:/etc/timezone:ro"
+            - "/etc/localtime:/etc/localtime:ro"
+        networks:
+            network:
+                ipv4_address: 174.20.1.40
+        depends_on:
+            - mysql
+    mysql:
+        image: mysql:5.7
+        container_name: database
+        tty: true
+        stdin_open: true
+        volumes:
+            - mysqldata:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        env_file:
+            - ./.docker/mysql/.env
+        networks:
+            network:
+                ipv4_address: 174.20.1.45
+volumes:
+    mysqldata:
+networks:
+    network:
+        ipam:
+            driver: default
+            config:
+                -   subnet: 174.20.0.0/17
