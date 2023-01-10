@@ -19,4 +19,54 @@ class Partida extends ModelHelper
         'tipo',
         'localidade_id'
     ];
+
+    public function resultados()
+    {
+        return $this->hasMany
+        (
+            Resultado::class,
+            'partida_id',
+            'id'
+        );
+    }
+
+    public function fase()
+    {
+        return $this->belongsTo
+        (
+            Fase::class,
+            'fase_id',
+            'id',
+        );
+    }
+
+    public function equipe1()
+    {
+        return $this->belongsTo
+        (
+            Equipe::class,
+            'equipe1_id',
+            'id',
+        );
+    }
+
+    public function equipe2()
+    {
+        return $this->belongsTo
+        (
+            Equipe::class,
+            'equipe2_id',
+            'id',
+        );
+    }
+
+    public function localidade()
+    {
+        return $this->belongsTo
+        (
+            Localidade::class,
+            'localidade_id',
+            'id',
+        );
+    }
 }

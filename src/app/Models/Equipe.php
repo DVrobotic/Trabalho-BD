@@ -65,7 +65,7 @@ class Equipe extends ModelHelper
         );
     }
 
-    public function cameponatos()
+    public function campeonatos()
     {
         return $this->belongsToMany
         (

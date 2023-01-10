@@ -116,17 +116,28 @@ class Campeonato extends ModelHelper
 
         foreach($fases as $fase)
         {
-            $equipes = $this->equipes()->pluck('id');
+            $equipes = $this->equipes()->get();
+
             for($i = 0; $i < $fase->quanidadePartidas; $i++)
             {
 
-                Partida::factory()->create
+                $times = [$equipes->pop()->id, $equipes->pop()->id];
+                $partida = Partida::factory()->create
                 ([
                     'campeonato_id' => $this->id,
                     'fase_id' => $fase->id,
-                    'equipe1_id' => $equipes->pop(),
-                    'equipe2_id' => $equipes->pop(),
+                    'equipe1_id' => $times[0],
+                    'equipe2_id' => $times[1],
                 ]);
+
+                Resultado::factory()
+                    ->count(fake()->numberBetween(0, 3))
+                    ->create
+                    ([
+                        'partida_id' => $partida->id,
+                        'empate' => $bool = fake()->boolean(),
+                        'vencedor_id' => $bool ? null : fake()->randomElement($times),
+                    ]);
             }
         }
     }
