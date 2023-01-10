@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Campeonato extends ModelHelper
 {
@@ -15,6 +16,16 @@ class Campeonato extends ModelHelper
         'inicio',
         'final',
     ];
+
+    public function fases()
+    {
+        return $this->hasMany
+        (
+            Fase::class,
+            'campeonato_id',
+            'id'
+        );
+    }
 
     public function modalidade()
     {
@@ -57,6 +68,36 @@ class Campeonato extends ModelHelper
             'campeonato_id',
             'id',
         );
+    }
+
+    public function totalDeEquipes()
+    {
+        return $this->equipes()->count();
+    }
+
+    public function numeroDeFases() : int
+    {
+        return (int) ceil(log($this->totalDeEquipes(), 2));
+    }
+
+    public function numeroPartidas(int $fase) : int
+    {
+        return (int) ceil($this->totalDeEquipes()/$fase);
+    }
+
+    public function instanciarFasesFactory()
+    {
+        $total = $this->numeroDeFases();
+
+        for($i = 1; $i <= $total; $i++)
+        {
+            Fase::factory()->create
+            ([
+                'campeonato_id' => $this->id,
+                'numero' => $i,
+                'partidas' => $this->numeroPartidas($i),
+            ]);
+        }
     }
 
 }

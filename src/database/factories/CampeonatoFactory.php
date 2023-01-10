@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Campeonato;
 use App\Models\Modalidade;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

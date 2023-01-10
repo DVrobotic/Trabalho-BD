@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('modalidade_id')->index();
             $table->unsignedBigInteger('tipo_equipamento_id')->index();
 
+            $table->primary(['modalidade_id', 'tipo_equipamento_id'], 'modalidade_equipamento');
+
             $table->foreign('modalidade_id')
                 ->references('id')
                 ->on('modalidades')

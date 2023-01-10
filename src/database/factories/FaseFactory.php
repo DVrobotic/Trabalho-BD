@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TipoEquipamento>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Fase>
  */
-class TipoEquipamentoFactory extends Factory
+class FaseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class TipoEquipamentoFactory extends Factory
     {
         return
         [
-            'nome' => fake('pt_BR')->unique()->word(),
+            "nome" => fake()->word(),
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Campeonato;
 use App\Models\CampeonatoComGrupo;
 use App\Models\Equipe;
+use App\Models\Fase;
 use App\Models\Modalidade;
 use App\Models\Playoff;
 use App\Models\User;
@@ -32,7 +33,11 @@ class CampeonatoSeeder extends Seeder
                     ['modalidade_id' => $campeonato->modalidade_id]
                 )
             )
-            ->create();
+            ->create()
+            ->each(function(Campeonato $campeonato)
+            {
+                $campeonato->instanciarFasesFactory();
+            });
 
         Campeonato::factory()
             ->count(3)
@@ -46,7 +51,11 @@ class CampeonatoSeeder extends Seeder
                     )
             )
             ->has(CampeonatoComGrupo::factory()->count(1), 'campeonatoComGrupo')
-            ->create();
+            ->create()
+            ->each(function(Campeonato $campeonato)
+            {
+                $campeonato->instanciarFasesFactory();
+            });
 
         Campeonato::factory()
             ->count(2)
@@ -61,6 +70,10 @@ class CampeonatoSeeder extends Seeder
             )
             ->has(Playoff::factory()->count(1), 'playoff')
             ->has(CampeonatoComGrupo::factory()->count(1), 'campeonatoComGrupo')
-            ->create();
+            ->create()
+            ->each(function(Campeonato $campeonato)
+            {
+                $campeonato->instanciarFasesFactory();
+            });
     }
 }
