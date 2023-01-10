@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Federacao;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Equipe>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Federacao>
  */
-class EquipeFactory extends Factory
+class FederacaoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +18,9 @@ class EquipeFactory extends Factory
     {
         return
         [
-            'nome' => fake('pt_BR')->word(),
-            'federacao_id' => Federacao::factory()->create()->id,
+            'Nome' => fake('pt_BR')->text(10),
+            'Estado' => fake('pt_BR')->word(),
+            'NomePresidente' => fake('pt_BR')->name(),
         ];
     }
 }

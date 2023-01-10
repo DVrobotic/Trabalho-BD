@@ -12,6 +12,7 @@ class Equipe extends ModelHelper
     protected $fillable =
     [
         'nome',
+        'fedaracao_id',
     ];
 
     public function jogadores()
@@ -23,6 +24,16 @@ class Equipe extends ModelHelper
             'equipe_id',
             'user_id',
             'id',
+            'id',
+        );
+    }
+
+    public function federacao()
+    {
+        return $this->belongsTo
+        (
+            Federacao::class,
+            'federacao_id',
             'id',
         );
     }

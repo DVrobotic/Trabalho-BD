@@ -5,30 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends ModelHelper
+class Federacao extends ModelHelper
 {
     use HasFactory;
 
+    protected $table = 'federacoes';
+
     protected $fillable =
     [
-        'nome',
-        'sobrenome',
-        'email',
-        'password',
-        'tipo',
-        'cpf',
-        'endereço',
+        'Nome',
+        'Estado',
+        'NomePresidente',
     ];
 
     public function equipes()
     {
-        return $this->belongsToMany
+        return $this->hasMany
         (
             Equipe::class,
-            'equipes_users',
-            'user_id',
-            'equipe_id',
-            'id',
+            'federacao_id',
             'id',
         );
     }

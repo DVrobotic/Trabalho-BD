@@ -28,6 +28,8 @@ return new class extends Migration
                 ->on('equipes')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+
         });
     }
 

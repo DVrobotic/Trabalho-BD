@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('equipes', function (Blueprint $table)
-        {
+        Schema::create('federacoes', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-//            $table->bigInteger('idModalidade');
-//            $table->bigInteger('idFederação');
-
+            $table->string('Nome');
+            $table->string('Estado');
+            $table->string('NomePresidente');
         });
+
     }
 
     /**
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipes');
+        Schema::dropIfExists('federacaos');
     }
 };
