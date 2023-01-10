@@ -16,6 +16,16 @@ class Campeonato extends ModelHelper
         'final',
     ];
 
+    public function modalidade()
+    {
+        return $this->belongsTo
+        (
+          Modalidade::class,
+                'modalidade_id',
+            'id',
+        );
+    }
+
     public function equipes()
     {
         return $this->belongsToMany

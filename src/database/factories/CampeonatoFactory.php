@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Modalidade;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class CampeonatoFactory extends Factory
             'nome' => fake('pt_BR')->word(),
             'inicio' => fake()->date(max: $final),
             'final' => $final,
+            'modalidade_id' => fake()->randomElement(Modalidade::pluck('id')),
         ];
     }
 }

@@ -12,8 +12,20 @@ class Equipe extends ModelHelper
     protected $fillable =
     [
         'nome',
-        'fedaracao_id',
+        'equipe_id',
+        'modalidade_id',
     ];
+
+
+    public function modalidade()
+    {
+        return $this->belongsTo
+        (
+            Modalidade::class,
+            'modalidade_id',
+            'id',
+        );
+    }
 
     public function jogadores()
     {

@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('campeonatos', function (Blueprint $table) {
+        Schema::create('modalidades', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->date('inicio');
-            $table->date('final');
-
+            $table->string('nome')->unique();
+            $table->enum('tipo', [1,2,3]); // 1 => solo, 2 => equipe, 3 => ambos
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campeonatos');
+        Schema::dropIfExists('modalidades');
     }
 };

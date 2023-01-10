@@ -13,18 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('equipes', function (Blueprint $table)
-        {
+        Schema::create('campeonatos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->date('inicio');
+            $table->date('final');
             $table->unsignedBigInteger('modalidade_id')->index()->nullable();
-            $table->unsignedBigInteger('federacao_id')->index()->nullable();
-
-            $table->foreign('federacao_id')
-                ->references('id')
-                ->on('federacoes')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
 
             $table->foreign('modalidade_id')
                 ->references('id')
@@ -41,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipes');
+        Schema::dropIfExists('campeonatos');
     }
 };

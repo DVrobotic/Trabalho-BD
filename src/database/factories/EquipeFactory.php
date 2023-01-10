@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Federacao;
+use App\Models\Modalidade;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
