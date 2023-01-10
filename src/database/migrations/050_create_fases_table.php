@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('fases', function (Blueprint $table) {
             $table->id();
-            $table->integer("numero");
+            $table->integer("numero")->index();
             $table->string("nome");
-            $table->integer("partidas");
+            $table->integer("quanidadePartidas");
             $table->unsignedBigInteger("campeonato_id")->index();
 
             $table->unique(["numero", "campeonato_id"]);

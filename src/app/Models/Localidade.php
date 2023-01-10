@@ -16,4 +16,14 @@ class Localidade extends ModelHelper
         'endereço',
         'porte',
     ];
+
+    public function partidas()
+    {
+        return $this->hasMany
+        (
+            Partida::class,
+            'localidade_id',
+            'id',
+        );
+    }
 }

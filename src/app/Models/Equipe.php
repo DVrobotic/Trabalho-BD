@@ -16,6 +16,31 @@ class Equipe extends ModelHelper
         'modalidade_id',
     ];
 
+    public function partidasComoEquipe1()
+    {
+        return $this->hasMany
+        (
+            Partida::class,
+            'equipe1_id',
+            'id',
+        );
+    }
+
+    public function partidasComoEquipe2()
+    {
+        return $this->hasMany
+        (
+            Partida::class,
+            'equipe2_id',
+            'id',
+        );
+    }
+
+    public function partidas()
+    {
+        return ;
+    }
+
 
     public function modalidade()
     {

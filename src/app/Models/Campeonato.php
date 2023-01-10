@@ -17,6 +17,16 @@ class Campeonato extends ModelHelper
         'final',
     ];
 
+    public function partidas()
+    {
+        return $this->hasMany
+        (
+            Partida::class,
+            'campeonato_id',
+            'id',
+        );
+    }
+
     public function fases()
     {
         return $this->hasMany
@@ -82,7 +92,7 @@ class Campeonato extends ModelHelper
 
     public function numeroPartidas(int $fase) : int
     {
-        return (int) ceil($this->totalDeEquipes()/$fase);
+        return (int) ceil($this->totalDeEquipes()/pow(2, $fase));
     }
 
     public function instanciarFasesFactory()
@@ -95,9 +105,31 @@ class Campeonato extends ModelHelper
             ([
                 'campeonato_id' => $this->id,
                 'numero' => $i,
-                'partidas' => $this->numeroPartidas($i),
+                'quanidadePartidas' => $this->numeroPartidas($i),
             ]);
         }
     }
+
+    public function instanciarPartidas()
+    {
+        $fases = $this->fases()->orderBy('numero', 'asc')->get();
+
+        foreach($fases as $fase)
+        {
+            $equipes = $this->equipes()->pluck('id');
+            for($i = 0; $i < $fase->quanidadePartidas; $i++)
+            {
+
+                Partida::factory()->create
+                ([
+                    'campeonato_id' => $this->id,
+                    'fase_id' => $fase->id,
+                    'equipe1_id' => $equipes->pop(),
+                    'equipe2_id' => $equipes->pop(),
+                ]);
+            }
+        }
+    }
+
 
 }

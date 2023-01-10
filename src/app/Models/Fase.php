@@ -26,4 +26,14 @@ class Fase extends ModelHelper
           'id',
         );
     }
+
+    public function partidas()
+    {
+        return $this->hasMany
+        (
+            Partida::class,
+            'fase_id',
+            'id',
+        );
+    }
 }

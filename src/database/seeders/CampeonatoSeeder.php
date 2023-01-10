@@ -37,6 +37,7 @@ class CampeonatoSeeder extends Seeder
             ->each(function(Campeonato $campeonato)
             {
                 $campeonato->instanciarFasesFactory();
+                $campeonato->instanciarPartidas();
             });
 
         Campeonato::factory()
@@ -55,6 +56,7 @@ class CampeonatoSeeder extends Seeder
             ->each(function(Campeonato $campeonato)
             {
                 $campeonato->instanciarFasesFactory();
+                $campeonato->instanciarPartidas();
             });
 
         Campeonato::factory()
@@ -74,6 +76,7 @@ class CampeonatoSeeder extends Seeder
             ->each(function(Campeonato $campeonato)
             {
                 $campeonato->instanciarFasesFactory();
+                $campeonato->instanciarPartidas();
             });
     }
 }
