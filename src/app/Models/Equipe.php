@@ -28,6 +28,19 @@ class Equipe extends ModelHelper
         );
     }
 
+    public function cameponatos()
+    {
+        return $this->belongsToMany
+        (
+            Campeonato::class,
+            'campeonatos_equipes',
+            'equipe_id',
+            'campeonato_id',
+            'id',
+            'id'
+        );
+    }
+
     public function federacao()
     {
         return $this->belongsTo

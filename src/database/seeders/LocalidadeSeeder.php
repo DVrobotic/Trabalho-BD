@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Equipe;
-use App\Models\User;
+use App\Models\Localidade;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class EquipeSeeder extends Seeder
+class LocalidadeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +15,6 @@ class EquipeSeeder extends Seeder
      */
     public function run()
     {
-        Equipe::factory()
-            ->count(10)
-            ->has(User::factory()->count(5), 'jogadores')
-            ->create();
+        Localidade::factory()->count(10)->create();
     }
 }

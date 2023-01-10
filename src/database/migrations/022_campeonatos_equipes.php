@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('equipes_users', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->index();
+        Schema::create('campeonatos_equipes', function (Blueprint $table){
+            $table->unsignedBigInteger('campeonato_id')->index();
             $table->unsignedBigInteger('equipe_id')->index();
 
-            $table->foreign('user_id')
+            $table->foreign('campeonato_id')
                 ->references('id')
-                ->on('users')
+                ->on('campeonatos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
@@ -28,8 +28,6 @@ return new class extends Migration
                 ->on('equipes')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-
         });
     }
 
@@ -40,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipes_users');
+        Schema::dropIfExists('campeonatos_equipes');
     }
 };

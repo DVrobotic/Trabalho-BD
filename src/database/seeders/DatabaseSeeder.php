@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Campeonato;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserSeeder::class);
-        $this->call(EquipeSeeder::class);
+        $this->call(CampeonatoSeeder::class);
+        $this->call(LocalidadeSeeder::class);
     }
 }
