@@ -17,6 +17,19 @@ class Equipamento extends ModelHelper
         'marca',
     ];
 
+    public function equipamentos()
+    {
+        return $this->belongsToMany
+        (
+            User::class,
+            'equipamentos_users',
+            'equipamento_id',
+            'user_id',
+            'id',
+            'id',
+        );
+    }
+
     public function tipoEquipmaneto()
     {
         return $this->belongsTo
