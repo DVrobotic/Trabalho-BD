@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Modalidade;
-use App\Models\TipoEquipamento;
+use App\Models\Equipamento;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ModalidadeSeeder extends Seeder
+class EquipamentoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +15,6 @@ class ModalidadeSeeder extends Seeder
      */
     public function run()
     {
-        Modalidade::factory()
-            ->count(20)
-            ->has(TipoEquipamento::factory()->count(2))
-            ->create();
+        Equipamento::factory()->count(20)->create();
     }
 }

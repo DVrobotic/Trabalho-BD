@@ -13,18 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('campeonatos', function (Blueprint $table) {
+        Schema::create('tipo_equipamentos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->date('inicio');
-            $table->date('final');
-            $table->unsignedBigInteger('modalidade_id')->index()->nullable();
-
-            $table->foreign('modalidade_id')
-                ->references('id')
-                ->on('modalidades')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
         });
     }
 
@@ -35,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campeonatos');
+        Schema::dropIfExists('tipo_equipamentos');
     }
 };

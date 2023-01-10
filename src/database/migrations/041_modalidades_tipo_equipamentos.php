@@ -13,23 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('campeonatos_equipes', function (Blueprint $table){
-            $table->unsignedBigInteger('campeonato_id')->index();
-            $table->unsignedBigInteger('equipe_id')->index();
+        Schema::create('modalidades_tipo_equipamentos', function (Blueprint $table) {
+            $table->unsignedBigInteger('modalidade_id')->index();
+            $table->unsignedBigInteger('tipo_equipamento_id')->index();
 
-            $table->foreign('campeonato_id')
+            $table->foreign('modalidade_id')
                 ->references('id')
-                ->on('campeonatos')
+                ->on('modalidades')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('equipe_id')
+            $table->foreign('tipo_equipamento_id')
                 ->references('id')
-                ->on('equipes')
+                ->on('tipo_equipamentos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-            $table->primary(['campeonato_id', 'equipe_id']);
         });
     }
 
@@ -40,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campeonatos_equipes');
+        schema::dropIfExists('modalidades_tipo_equipamentos');
     }
 };

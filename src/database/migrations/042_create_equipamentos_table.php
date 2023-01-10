@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('campeonatos', function (Blueprint $table) {
+        Schema::create('equipamentos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('tipo_equipamento_id')->index();
             $table->string('nome');
-            $table->date('inicio');
-            $table->date('final');
-            $table->unsignedBigInteger('modalidade_id')->index()->nullable();
+            $table->string('modelo');
+            $table->string('marca');
 
-            $table->foreign('modalidade_id')
+            $table->foreign('tipo_equipamento_id')
                 ->references('id')
-                ->on('modalidades')
-                ->onDelete('set null')
+                ->on('tipo_equipamentos')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campeonatos');
+        Schema::dropIfExists('equipamentos');
     }
 };

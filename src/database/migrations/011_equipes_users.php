@@ -29,7 +29,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-
+            $table->primary(['user_id', 'equipe_id']);
         });
     }
 

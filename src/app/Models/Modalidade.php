@@ -15,7 +15,20 @@ class Modalidade extends ModelHelper
         'tipo'
     ];
 
-    public function campeonatios()
+    public function tipoEquipamentos()
+    {
+        return $this->belongsToMany
+        (
+            TipoEquipamento::class,
+            'modalidades_tipo_equipamentos',
+            'modalidade_id',
+            'tipo_equipamento_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function campeonatos()
     {
         return $this->hasMany
         (
@@ -24,6 +37,7 @@ class Modalidade extends ModelHelper
             'id',
         );
     }
+
 
 
     public function equipes()
