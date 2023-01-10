@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\QueryMakerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TestController::class, 'test'])->name('welcome');
+Route::get('/', [QueryMakerController::class, 'test'])->name('queryMaker');

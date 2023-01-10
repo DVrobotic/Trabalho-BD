@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Test;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TestSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,6 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
-        Test::create(['nome' => 'teste1']);
-        Test::create(['nome' => 'teste2']);
-        Test::create(['nome' => 'teste3']);
+        User::factory()->count(10)->create();
     }
 }
