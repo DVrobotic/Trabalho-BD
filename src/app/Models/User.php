@@ -20,6 +20,19 @@ class User extends ModelHelper
         'endereço',
     ];
 
+    public function equipamentos()
+    {
+        return $this->belongsToMany
+        (
+            Equipamento::class,
+            'equipamentos_users',
+            'user_id',
+            'equipamento_id',
+            'id',
+            'id',
+        );
+    }
+
     public function equipes()
     {
         return $this->belongsToMany
