@@ -12,6 +12,7 @@ class QueryMakerController extends Controller
    public function Test()
    {
        $campeonatoId = Campeonato::first()->id;
+       $fase1 = Campeonato::first()->fases()->orderBy('numero', 'asc')->first();
 
        //query para buscar vitorias/partida
        //query para fazer inner join de (vitorias) com equipe que ganhou
@@ -30,7 +31,8 @@ class QueryMakerController extends Controller
                     r.vencedor_id as vencedorId
                 from partidas as p
                 inner join resultados as r on r.partida_id = p.id
-                where p.campeonato_id = {$campeonatoId}
+                where p.campeonato_id = {$campeonatoId} and
+                where p.fase_id = {$fase1->id} and
                 group by p.id, r.vencedor_id
                 having count(*) * 2 >
                 (
@@ -39,6 +41,7 @@ class QueryMakerController extends Controller
                     from partidas p2
                     inner join resultados r2 on r2.id = p2.id
                     where p2.campeonato_id = {$campeonatoId} and
+                    where p2.fase_id = {$fase1->id} and
                     p.id = p2.id and
                     r2.vencedor_id != r.vencedor_id
                     group by p2.id
@@ -47,9 +50,6 @@ class QueryMakerController extends Controller
             on subquery.vencedorId = e.id
             "
        ));
-
-       dd($test, Campeonato::first()->partidas());
-
 
 
        return view('queryMaker');

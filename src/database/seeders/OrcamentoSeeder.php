@@ -18,7 +18,14 @@ class OrcamentoSeeder extends Seeder
     {
         Orcamento::factory()
             ->count(10)
-            ->has(Patrocinador::factory()->count(2), 'patrocinadores')
+            ->hasAttached
+            (
+                Patrocinador
+                    ::factory()
+                    ->count(2),
+                    ['valor' => fake()->randomFloat(2, 0,10000)],
+                    'patrocinadores'
+            )
             ->create();
     }
 }

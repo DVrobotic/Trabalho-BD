@@ -139,7 +139,7 @@ class Campeonato extends ModelHelper
             ([
                 'campeonato_id' => $this->id,
                 'numero' => $i,
-                'quanidadePartidas' => $this->numeroPartidas($i),
+                'quantidadePartidas' => $this->numeroPartidas($i),
             ]);
         }
     }
@@ -152,7 +152,7 @@ class Campeonato extends ModelHelper
         {
             $equipes = $this->equipes()->get();
 
-            for($i = 0; $i < $fase->quanidadePartidas; $i++)
+            for($i = 0; $i < $fase->quantidadePartidas; $i++)
             {
 
                 $times = [$equipes->pop()->id, $equipes->pop()->id];

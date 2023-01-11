@@ -13,7 +13,7 @@ class Fase extends ModelHelper
     [
         "numero",
         "nome",
-        "partidas",
+        "quantidadePartidas",
         "campeonato_id",
     ];
 

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orcamentos_patrocinadores', function (Blueprint $table) {
             $table->unsignedBigInteger('orcamento_id')->index();
             $table->unsignedBigInteger('patrocinador_id')->index();
+            $table->float('valor', 10, 2)->default(0);
 
             $table->primary(['orcamento_id', 'patrocinador_id'], 'orcamento_equipamento');
 

@@ -14,8 +14,8 @@ class Orcamento extends ModelHelper
         "gasto_localidade",
         "gasto_premio",
         "lucro_esperado",
-        "preço_ingresso",
-        "preço_transmissao",
+        "preco_ingresso",
+        "preco_transmissao",
         "campeonato_id"
     ];
 

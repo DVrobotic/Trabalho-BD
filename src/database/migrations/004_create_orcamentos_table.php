@@ -18,8 +18,8 @@ return new class extends Migration
             $table->float("gasto_localidade", 10, 2)->default(0);
             $table->float("gasto_premio", 10, 2)->default(0);
             $table->float("lucro_esperado", 10, 2)->default(0);
-            $table->float("preço_ingresso", 10, 2)->default(0);
-            $table->float("preço_transmissao", 10, 2)->default(0);
+            $table->float("preco_ingresso", 10, 2)->default(0);
+            $table->float("preco_transmissao", 10, 2)->default(0);
         });
     }
 

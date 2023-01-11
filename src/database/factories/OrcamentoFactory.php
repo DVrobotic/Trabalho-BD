@@ -21,8 +21,8 @@ class OrcamentoFactory extends Factory
             "gasto_localidade" => fake()->randomFloat(2, 0,100000),
             "gasto_premio" => fake()->randomFloat(2, 0,100000),
             "lucro_esperado" => fake()->randomFloat(2, 0,100000),
-            "preço_ingresso" => fake()->randomFloat(2, 0,100000),
-            "preço_transmissao" => fake()->randomFloat(2, 0,100000),
+            "preco_ingresso" => fake()->randomFloat(2, 0,100000),
+            "preco_transmissao" => fake()->randomFloat(2, 0,100000),
         ];
     }
 }

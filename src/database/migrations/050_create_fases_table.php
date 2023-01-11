@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer("numero")->index();
             $table->string("nome");
-            $table->integer("quanidadePartidas");
+            $table->integer("quantidadePartidas");
             $table->unsignedBigInteger("campeonato_id")->index();
 
             $table->unique(["numero", "campeonato_id"]);
