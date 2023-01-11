@@ -27,6 +27,12 @@
                         <p>Usuários</p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('queryMaker') }}" class="nav-link {{ Route::is('users.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-pen"></i>
+                        <p>Testar Queries</p>
+                    </a>
+                </li>
             </ul>
     </nav>
         <!-- Fim Sidebar Menu -->

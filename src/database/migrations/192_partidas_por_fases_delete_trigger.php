@@ -11,7 +11,7 @@ return new class extends Migration
     {
         DB::unprepared
         ("
-            CREATE TRIGGER partidas_por_fases_update_trigger AFTER INSERT ON `campeonatos_equipes` FOR EACH ROW
+            CREATE TRIGGER partidas_por_fases_delete_trigger AFTER Delete ON `campeonatos_equipes` FOR EACH ROW
             BEGIN
                 update fases
                 SET quantidadePartidas =
@@ -20,9 +20,9 @@ return new class extends Migration
                     from equipes
                     inner join campeonatos_equipes
                         on campeonatos_equipes.equipe_id = equipes.id
-                        and campeonatos_equipes.campeonato_id = NEW.campeonato_id
+                        and campeonatos_equipes.campeonato_id = OLD.campeonato_id
                 )
-                where fases.campeonato_id = NEW.campeonato_id;
+                where fases.campeonato_id = OLD.campeonato_id;
             END;
         ");
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER `partidas_por_fases_update_trigger`');
+        DB::unprepared('DROP TRIGGER `partidas_por_fases_delete_trigger`');
     }
 };

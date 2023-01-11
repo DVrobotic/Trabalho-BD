@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [QueryMakerController::class, 'test'])->name('queryMaker');
-
+Route::get('/', [UserController::class, 'index']);
+Route::get('/query', [QueryMakerController::class, 'queryMaker'])->name('queryMaker');
 Route::resource('/users', UserController::class)->names('users');
+

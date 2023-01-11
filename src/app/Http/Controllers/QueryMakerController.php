@@ -9,10 +9,16 @@ use Illuminate\Support\Facades\DB;
 
 class QueryMakerController extends Controller
 {
-   public function Test()
+   public function queryMaker()
    {
-       //query para buscar vitorias/partida
-       //query para fazer inner join de (vitorias) com equipe que ganhou
+       $test = DB::select(DB::raw
+       (value:
+       "
+            select * from localidades_torneio
+       "
+       ));
+
+       dd($test);
 
        return view('queryMaker');
    }

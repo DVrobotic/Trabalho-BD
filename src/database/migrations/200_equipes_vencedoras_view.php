@@ -9,11 +9,10 @@ return new class extends Migration
 {
     public function up()
     {
-        DB::statement("DROP VIEW equipes_vencedoras");
         DB::statement
         (
             "
-            CREATE VIEW equipes_vencedoras as
+            CREATE OR REPLACE VIEW equipes_vencedoras as
             select
                     p.id as partidaId,
                     r.vencedor_id,
@@ -46,6 +45,6 @@ return new class extends Migration
 
     public function down()
     {
-        DB::statement("DROP VIEW equipes_vencedoras");
+        DB::statement("DROP IF EXISTS VIEW equipes_vencedoras");
     }
 };
