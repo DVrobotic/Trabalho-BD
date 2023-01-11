@@ -32,7 +32,7 @@ class QueryMakerController extends Controller
                 from partidas as p
                 inner join resultados as r on r.partida_id = p.id
                 where p.campeonato_id = {$campeonatoId} and
-                where p.fase_id = {$fase1->id} and
+                p.fase_id = {$fase1->id}
                 group by p.id, r.vencedor_id
                 having count(*) * 2 >
                 (
@@ -41,7 +41,7 @@ class QueryMakerController extends Controller
                     from partidas p2
                     inner join resultados r2 on r2.id = p2.id
                     where p2.campeonato_id = {$campeonatoId} and
-                    where p2.fase_id = {$fase1->id} and
+                    p2.fase_id = {$fase1->id} and
                     p.id = p2.id and
                     r2.vencedor_id != r.vencedor_id
                     group by p2.id
@@ -51,6 +51,8 @@ class QueryMakerController extends Controller
             "
        ));
 
+
+       dd($test);
 
        return view('queryMaker');
    }
