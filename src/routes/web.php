@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\QueryMakerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [UserController::class, 'index']);
 Route::get('/query', [QueryMakerController::class, 'queryMaker'])->name('queryMaker');
 Route::resource('/users', UserController::class)->names('users');
+Route::resource('/equipes', EquipeController::class)->names('equipes');
 

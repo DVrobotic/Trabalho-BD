@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EquipeRequest;
+use App\Models\Campeonato;
 use App\Models\Equipe;
 use App\Http\Requests\StoreEquipeRequest;
-use App\Http\Requests\UpdateEquipeRequest;
+use App\Models\Modalidade;
+use Illuminate\Http\Request;
 
 class EquipeController extends Controller
 {
@@ -15,7 +18,8 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        //
+        $equipes = Equipe::all();
+        return view('equipes.index', compact('equipes'));
     }
 
     /**
@@ -25,62 +29,51 @@ class EquipeController extends Controller
      */
     public function create()
     {
-        //
+        $equipe = new Equipe();
+        $modalidades = Modalidade::all();
+        $campeonatos = Campeonato::all();
+        return view('equipes.create',compact('equipe', 'modalidades', 'campeonatos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreEquipeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreEquipeRequest $request)
+
+    public function store(EquipeRequest $request)
     {
-        //
+        $data = $request->validated();
+        Equipe::create($data);
+        $modalidades = Modalidade::all();
+        $campeonatos = Campeonato::all();
+        return redirect()->route('equipes.index', compact('modalidades', 'campeonatos'))->with('success',true);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Equipe  $equipe
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Equipe $equipe)
     {
-        //
+        $modalidades = Modalidade::all();
+        $campeonatos = Campeonato::all();
+        return view('equipes.show', compact('equipe', 'modalidades', 'campeonatos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Equipe  $equipe
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Equipe $equipe)
     {
-        //
+        $modalidades = Modalidade::all();
+        $campeonatos = Campeonato::all();
+        return view('equipes.edit',compact('equipe', 'modalidades', 'campeonatos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateEquipeRequest  $request
-     * @param  \App\Models\Equipe  $equipe
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateEquipeRequest $request, Equipe $equipe)
+
+    public function update(EquipeRequest $request, Equipe $equipe)
     {
-        //
+        $data = $request->validated();
+        $equipe->update(['nome' => $data['nome']]);
+        $equipe->modalidade()->associate($data['modalidade_id']);
+        $equipe->campeonatos()->sync($data['campeonato_id']);
+
+        return redirect()->back()->with('success', true);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Equipe  $equipe
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Equipe $equipe)
     {
-        //
+        $equipe->delete();
+        return redirect()->route('equipes.index');
     }
 }

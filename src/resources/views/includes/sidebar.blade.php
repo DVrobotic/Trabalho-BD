@@ -28,7 +28,13 @@
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="{{ route('queryMaker') }}" class="nav-link {{ Route::is('users.index') ? 'active' : '' }}">
+                    <a href="{{ route('equipes.index') }}" class="nav-link {{ Route::is('equipes.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-cog"></i>
+                        <p>Equipes</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('queryMaker') }}" class="nav-link {{ Route::is('makeQuery') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-pen"></i>
                         <p>Testar Queries</p>
                     </a>

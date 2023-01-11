@@ -11,15 +11,6 @@ class QueryMakerController extends Controller
 {
    public function queryMaker()
    {
-       $test = DB::select(DB::raw
-       (value:
-       "
-            select * from localidades_torneio
-       "
-       ));
-
-       dd($test);
-
        return view('queryMaker');
    }
 }
