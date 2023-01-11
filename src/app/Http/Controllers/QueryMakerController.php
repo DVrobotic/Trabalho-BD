@@ -14,7 +14,6 @@ class QueryMakerController extends Controller
        //query para buscar vitorias/partida
        //query para fazer inner join de (vitorias) com equipe que ganhou
 
-
        return view('queryMaker');
    }
 }

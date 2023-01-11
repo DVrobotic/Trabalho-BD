@@ -9,6 +9,7 @@ return new class extends Migration
 {
     public function up()
     {
+        DB::statement("DROP VIEW equipes_vencedoras");
         DB::statement
         (
             "

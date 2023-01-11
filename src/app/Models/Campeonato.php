@@ -139,7 +139,6 @@ class Campeonato extends ModelHelper
             ([
                 'campeonato_id' => $this->id,
                 'numero' => $i,
-                'quantidadePartidas' => $this->numeroPartidas($i),
             ]);
         }
     }
