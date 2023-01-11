@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo', [1,2]);
+            $table->enum('tipo', [1,2]); // 1 adm. 2 jogador
             $table->string('nome');
             $table->string('sobrenome');
             $table->string('cpf');
