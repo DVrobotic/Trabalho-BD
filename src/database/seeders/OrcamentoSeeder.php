@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Orcamento;
+use App\Models\Patrocinador;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,9 @@ class OrcamentoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Orcamento::factory()
+            ->count(10)
+            ->has(Patrocinador::factory()->count(2), 'patrocinadores')
+            ->create();
     }
 }

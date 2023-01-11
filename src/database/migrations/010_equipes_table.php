@@ -17,13 +17,13 @@ return new class extends Migration
         {
             $table->id();
             $table->string('nome');
-            $table->unsignedBigInteger('modalidade_id')->index()->nullable();
+            $table->unsignedBigInteger('modalidade_id')->index();
             $table->unsignedBigInteger('federacao_id')->index()->nullable();
 
             $table->foreign('federacao_id')
                 ->references('id')
                 ->on('federacoes')
-                ->onDelete('cascade')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
 
             $table->foreign('modalidade_id')

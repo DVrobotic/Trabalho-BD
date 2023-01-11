@@ -18,12 +18,19 @@ return new class extends Migration
             $table->string('nome');
             $table->date('inicio');
             $table->date('final');
-            $table->unsignedBigInteger('modalidade_id')->index()->nullable();
+            $table->unsignedBigInteger('modalidade_id')->index();
+            $table->unsignedBigInteger('orcamento_id')->index()->nullable();
 
             $table->foreign('modalidade_id')
                 ->references('id')
                 ->on('modalidades')
-                ->onDelete('set null')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('orcamento_id')
+                ->references('id')
+                ->on('orcamentos')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
     }

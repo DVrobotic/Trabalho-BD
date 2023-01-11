@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ModalidadeSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(LocalidadeSeeder::class);
+        $this->call(OrcamentoSeeder::class);
         $this->call(CampeonatoSeeder::class);
     }
 }

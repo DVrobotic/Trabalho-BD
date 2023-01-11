@@ -38,19 +38,13 @@ class CampeonatoSeeder extends Seeder
             )
             ->has(Playoff::factory()->count(1), 'playoff')
             ->has(Premiacao::factory()->count(1), 'premiacoes')
-            ->has
-            (
-                Orcamento::factory()
-                    ->count(1)
-                    ->has(Patrocinador::factory()->count(2), 'patrocinadores'),
-                'orcamentos'
-            )
             ->create()
             ->each(function(Campeonato $campeonato)
             {
                 $campeonato->emissoras()->sync(fake()->randomElements(Emissora::pluck('id')->toArray()));
                 $campeonato->instanciarFasesFactory();
                 $campeonato->instanciarPartidas();
+                $campeonato->orcamento()->associate(fake()->randomElement(Orcamento::pluck('id')->toArray()));
             });
 
         Campeonato::factory()
@@ -66,19 +60,13 @@ class CampeonatoSeeder extends Seeder
             )
             ->has(CampeonatoComGrupo::factory()->count(1), 'campeonatoComGrupo')
             ->has(Premiacao::factory()->count(1), 'premiacoes')
-            ->has
-            (
-                Orcamento::factory()
-                    ->count(1)
-                    ->has(Patrocinador::factory()->count(2), 'patrocinadores'),
-                'orcamentos'
-            )
             ->create()
             ->each(function(Campeonato $campeonato)
             {
                 $campeonato->emissoras()->sync(fake()->randomElements(Emissora::pluck('id')->toArray()));
                 $campeonato->instanciarFasesFactory();
                 $campeonato->instanciarPartidas();
+                $campeonato->orcamento()->associate(fake()->randomElement(Orcamento::pluck('id')->toArray()));
             });
 
         Campeonato::factory()
@@ -95,19 +83,13 @@ class CampeonatoSeeder extends Seeder
             ->has(Playoff::factory()->count(1), 'playoff')
             ->has(CampeonatoComGrupo::factory()->count(1), 'campeonatoComGrupo')
             ->has(Premiacao::factory()->count(1), 'premiacoes')
-            ->has
-            (
-                Orcamento::factory()
-                    ->count(1)
-                    ->has(Patrocinador::factory()->count(2), 'patrocinadores'),
-                'orcamentos'
-            )
             ->create()
             ->each(function(Campeonato $campeonato)
             {
                 $campeonato->emissoras()->sync(fake()->randomElements(Emissora::pluck('id')->toArray()));
                 $campeonato->instanciarFasesFactory();
                 $campeonato->instanciarPartidas();
+                $campeonato->orcamento()->associate(fake()->randomElement(Orcamento::pluck('id')->toArray()));
             });
     }
 }

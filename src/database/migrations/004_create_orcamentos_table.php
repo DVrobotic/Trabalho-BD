@@ -20,13 +20,6 @@ return new class extends Migration
             $table->float("lucro_esperado", 10, 2)->default(0);
             $table->float("preço_ingresso", 10, 2)->default(0);
             $table->float("preço_transmissao", 10, 2)->default(0);
-            $table->unsignedBigInteger('campeonato_id');
-
-            $table->foreign('campeonato_id')
-                ->references('id')
-                ->on('campeonatos')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         });
     }
 

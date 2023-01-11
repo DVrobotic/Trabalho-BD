@@ -34,10 +34,10 @@ class Orcamento extends ModelHelper
 
     public function campeonato()
     {
-        return $this->belongsTo
+        return $this->HasOne
         (
             Campeonato::class,
-            'campeonato_id',
+            'orcamento_id',
             'id',
         );
     }

@@ -48,9 +48,7 @@ class QueryMakerController extends Controller
             "
        ));
 
-
-
-       dd($test);
+       dd($test, Campeonato::first()->partidas());
 
 
 

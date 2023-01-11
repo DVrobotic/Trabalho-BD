@@ -15,6 +15,7 @@ class Campeonato extends ModelHelper
         'nome',
         'inicio',
         'final',
+        'orcamento_id',
     ];
 
     public function emissoras()
@@ -30,12 +31,12 @@ class Campeonato extends ModelHelper
         );
     }
 
-    public function orcamentos()
+    public function orcamento()
     {
-        return $this->hasMany
+        return $this->belongsTo
         (
             Orcamento::class,
-            'campeonato_id',
+            'orcamento_id',
             'id',
         );
     }
