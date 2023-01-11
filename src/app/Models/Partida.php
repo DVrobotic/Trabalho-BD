@@ -20,6 +20,19 @@ class Partida extends ModelHelper
         'localidade_id'
     ];
 
+    public function emissoras()
+    {
+        return $this->belongsToMany
+        (
+            Emissora::class,
+            'emissoras_partidas',
+            'partida_id',
+            'emissora_id',
+            'id',
+            'id'
+        );
+    }
+
     public function resultados()
     {
         return $this->hasMany

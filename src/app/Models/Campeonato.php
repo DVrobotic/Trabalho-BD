@@ -17,6 +17,39 @@ class Campeonato extends ModelHelper
         'final',
     ];
 
+    public function emissoras()
+    {
+        return $this->belongsToMany
+        (
+            Emissora::class,
+            'campeonatos_emissoras',
+            'campeonato_id',
+            'emissora_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function orcamentos()
+    {
+        return $this->hasMany
+        (
+            Orcamento::class,
+            'campeonato_id',
+            'id',
+        );
+    }
+
+    public function premiacoes()
+    {
+        return $this->hasMany
+        (
+            Premiacao::class,
+            'campeonato_id',
+            'id',
+        );
+    }
+
     public function partidas()
     {
         return $this->hasMany
@@ -138,6 +171,12 @@ class Campeonato extends ModelHelper
                         'empate' => $bool = fake()->boolean(),
                         'vencedor_id' => $bool ? null : fake()->randomElement($times),
                     ]);
+
+                $emissoras = $this->emissoras()->pluck('id');
+                if($emissoras->isNotEmpty())
+                {
+                    $partida->emissoras()->sync(fake()->randomElements($emissoras->toArray()));
+                }
             }
         }
     }
