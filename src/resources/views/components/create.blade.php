@@ -10,7 +10,7 @@
             </form>
         </div>
         <div class="card-footer">
-        <button type="submit" form="form-adicionar" class="btn btn-dark float-right">{{$button_name ?? 'Cadastrar'}}</button>
+        <button type="submit" form="form-adicionar" class="btn btn-primary float-right">{{$button_name ?? 'Cadastrar'}}</button>
         </div>
     </div>
 </div>

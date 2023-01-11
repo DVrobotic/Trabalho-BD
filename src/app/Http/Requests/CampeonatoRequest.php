@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCampeonatoRequest extends FormRequest
+class CampeonatoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateCampeonatoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,12 @@ class UpdateCampeonatoRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        return
+        [
+            'nome' => 'required|string|min:3|max:255',
+            'inicio' => 'required|date',
+            'final' => 'required|date|after:inicio',
+            'modalidade_id' => 'required|exists:modalidades,id',
         ];
     }
 }

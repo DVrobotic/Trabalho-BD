@@ -39,10 +39,10 @@ class EquipeController extends Controller
     public function store(EquipeRequest $request)
     {
         $data = $request->validated();
-        Equipe::create($data);
-        $modalidades = Modalidade::all();
-        $campeonatos = Campeonato::all();
-        return redirect()->route('equipes.index', compact('modalidades', 'campeonatos'))->with('success',true);
+        $equipe = Equipe::create($data);
+        $equipe->modalidade()->associate($data['modalidade_id']);
+        $equipe->campeonatos()->sync($data['campeonato_id']);
+        return redirect()->route('equipes.index')->with('success',true);
     }
 
 

@@ -2,85 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CampeonatoRequest;
 use App\Models\Campeonato;
 use App\Http\Requests\StoreCampeonatoRequest;
-use App\Http\Requests\UpdateCampeonatoRequest;
+use App\Models\Modalidade;
+use App\Models\Orcamento;
 
 class CampeonatoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $campeonatos = Campeonato::all();
+        return view('campeonatos.index', compact('campeonatos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $campeonato = new Campeonato();
+        $modalidades = Modalidade::all();
+        return view('campeonatos.create',compact('campeonato', 'modalidades'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCampeonatoRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCampeonatoRequest $request)
+    public function store(CampeonatoRequest $request)
     {
-        //
+        $data = $request->validated();
+        $campeonato = Campeonato::create($data);
+
+        return redirect()->route('campeonatos.index')->with('success',true);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Campeonato  $campeonato
-     * @return \Illuminate\Http\Response
-     */
     public function show(Campeonato $campeonato)
     {
-        //
+        $modalidades = Modalidade::all();
+        return view('campeonatos.show', compact('campeonato', 'modalidades'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Campeonato  $campeonato
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Campeonato $campeonato)
     {
-        //
+        $modalidades = Modalidade::all();
+        return view('campeonatos.edit',compact('campeonato', 'modalidades'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCampeonatoRequest  $request
-     * @param  \App\Models\Campeonato  $campeonato
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCampeonatoRequest $request, Campeonato $campeonato)
+
+    public function update(CampeonatoRequest $request, Campeonato $campeonato)
     {
-        //
+        $data = $request->validated();
+        $campeonato->update(['nome' => $data['nome']]);
+
+        return redirect()->back()->with('success', true);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Campeonato  $campeonato
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Campeonato $campeonato)
     {
-        //
+        $campeonato->delete();
+        return redirect()->route('campeonatos.index');
     }
 }

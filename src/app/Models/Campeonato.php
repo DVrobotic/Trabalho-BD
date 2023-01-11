@@ -16,6 +16,7 @@ class Campeonato extends ModelHelper
         'inicio',
         'final',
         'orcamento_id',
+        'modalidade_id',
     ];
 
     public function emissoras()

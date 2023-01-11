@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CampeonatoController;
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\QueryMakerController;
 use App\Http\Controllers\UserController;
@@ -20,4 +21,5 @@ Route::get('/', [UserController::class, 'index']);
 Route::get('/query', [QueryMakerController::class, 'queryMaker'])->name('queryMaker');
 Route::resource('/users', UserController::class)->names('users');
 Route::resource('/equipes', EquipeController::class)->names('equipes');
+Route::resource('/campeonatos', CampeonatoController::class)->names('campeonatos');
 
